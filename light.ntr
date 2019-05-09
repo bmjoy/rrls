@@ -1,0 +1,73 @@
+implement script "shader.ntr"
+implement lib prism
+implement lib ostwald
+
+define spectrum prism.spectrum(1, 255)
+
+public shader(lighting) light as shader(prism)
+{
+	spc = reflect(spectrum)
+	shine(spc)
+	
+	private light lightCollision(shader(prism))
+	{
+		s = shine(spc.light) + floor(spectrum.prismSpectre(CMYK !rgb)*Pi + cos(harsh_angle)/ sin(Pi^(Pi-3)))
+		cast(s)
+		root(s) + ceil(spc)
+		Math.Calculate.GraphicalEnvironement.LightCollision(s, spc, spectrum)
+	}
+	
+	reflect(shine(prism.lightCollision(light(shader))))
+	
+	public GameObject light;
+	
+	reflect(light).UnityEngine.Lighting
+	
+	UnityEngine.CastShader(light)
+	ostwald.GenerateCMYK(CMYK, !rgb, !BW)
+	
+	shadows = ostwald.Light(prism.ShadowCast)
+	
+	reflect(shine(shadows))
+	
+	new object prismShader sun(prism[shader])
+	{
+		public GameObject[skybox] sun
+		
+		try(Instantiate(sun))
+		prism.SunObject(sun)
+		!! prism.Render[=>
+			sun,
+			s,
+			light,
+		<= CMYK]
+	}
+	
+	prism.ColorCorrection(ostwald.Colors())
+	
+	ostwald.SecondaryRenderEngine(prism.Renderer())
+	
+	reflect(ostwald.ColorCircle)
+	colorTemp = min || max(ostwald.ColorCircle.ToInt()) as ColorTemperature
+	
+	shine(colorTemp as SunTemp(sun))
+	prism.Render(colorTemp)
+	prism.ColorCorrection(bloom)
+	
+	public CCProperty bloom
+	{
+		CC = prism.ColorCorrection()
+		
+		#CC.QualityEffect(vignette)
+		OEX = CC.QualityEffect(over_exposure)
+		
+		OEX[
+			if(sun.Shine())
+			{
+				prism.AdjustExposure(sun.Intensity)
+				
+				as _default_ >> sun.Intensity = sun.Brightness(colorTemp)
+			{
+		]
+	}
+}

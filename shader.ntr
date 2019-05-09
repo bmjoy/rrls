@@ -1,0 +1,124 @@
+implement lib graphics
+implement lib unity
+implement lib lighting as unity
+implement lib directx as microsoft_graphics
+implement lib raytracing as nvidia_sdk
+implement lib vsync
+implement lib freesync
+implement lib shaders as unity
+implement lib system
+
+private shader RRLS : raytracing.compatible()
+{
+	public colorList color_palette()
+	{
+		public colorList rgb = cos(2.0*Pi*h.x + 2.0*Pi / 3.0*vec3(3, 2, 1))*0.5 + 0.5
+		return h.z * mix(vec3(1.0), rgb, h.y)
+	}
+	
+	public cast smoothShadows(drop)
+	{
+		public int intensity = 6f
+		
+		light_src
+		{
+			public object lightSource as unity.GameObject(lightObj)
+			ls = cos(sin(lightSource - shadow_cast*(Pi^2)) cast++
+			
+			shineObj = root(ls + min(1-255)*Pi, ceil(ls + <=)* floor(<= func))
+			
+			gi = shine(shineObj)
+		}
+		
+		reflect(light_src) as unity.material.reflection(p)
+		
+		_gi_ = gi[shine || reflect]
+		_gi_.illuminate(p, shadow_cast, shineObj, ls, gi)
+		
+		p.reflect(object).current(ls * root(intensity))
+		
+		private shadow_Cast = sin(light_src*vec4(0, 9, 1, 2)-Pi*h.z + h.y)
+	}
+	
+	private cast harshShadows(drop)
+	{
+		if(smoothShadows.intensity < 2)
+		{
+			light_src
+			{
+				public object lightSource as unity.GameObject(lightObj)
+				ls = cos(sin(lightSource - shadow_cast*(Pi^2)+shineObj) cast++
+				
+				shineObj = root(ls + max(1 || 255)*Delta, floor(ls + <=)/ floor(<= func))
+				
+				gi = shine(shineObj)			
+			}
+			
+			reflect(light_src) as unity.material.reflection(p)
+			
+			_gi_ = gi[shine nor reflect]
+			harsh_angle = _gi_.illuminate(p, shadow_cast, shineObj, ls, gi)
+			
+			harsh_angle.properties[angles: ['90', '45', '30', '15', '0'], colors: [color_palette(blackShades.only(required))]]
+			
+			p.reflect(object).current(ls * root(intensity))
+			
+			private shadow_cast = sin(light_src*vec4(0, -9, -1, -2)-Pi* h.z + h.y)
+		}
+	}
+	
+	class raytracing(graphicElement)
+	{
+		array nvidia_cards_rtx[
+			System.ProductInfo.GPUChip('nVidia RTX 2060' || name.Similiar()),
+			System.ProductInfo.GPUChip('nVidia RTX 2070' || name.Similiar()),
+			System.ProductInfo.GPUChip('nVidia RTX 2080' || name.Similiar()),
+			System.ProductInfo.GPUChip('nVidia RTX 2080 Ti' || name.Similiar()),
+			System.ProductInfo.GPUChip('nVidia RTX 20{%}M' || name.Similiar()),
+			System.ProductInfo.GPUChip('nVidia RTX LAPTOPS' || name.Similiar()),
+		]
+		
+		require(nvidia_cards_rtx)
+		{
+			RTX.property(true)
+			RTX.raytrace(gi, harsh_angle)
+			RTX.balance(nvidia.perf)
+		}
+	}
+	
+	class vsync(graphicElement)
+	{
+		unity.GraphicsSettings(vsync: true)
+		
+		shader implement vsync.shader
+		vsync.shader(affect:true)
+	}
+	
+	class freesync(graphicElement)
+	{
+		array amd_gpu[
+			System.ProductInfo.GPUChip(name.Contains('AMD', 'Radeon', 'Vega', 'Sapphire'))
+		]
+		
+		require(amd_gpu)
+		{
+			unity.GraphicsSettings(freesync: true),
+			shader Quality.FreeSync(true)
+		}
+	}
+	
+	public settings[property]
+	{
+		AA = RTX.antialiasing = '4XAA'
+		AOC = RTX.ambientocclusion = true
+		VL = VSYNC.limit = Me.User.Preferences.VsyncLimit
+		MF = FPS.Limit = Me.User.Preferences.MaxFPS
+		CURR_F = FPS.current = Me.Game.Process.FPS
+		
+		graphic_quality = Math.Calculate.GraphicalEnvironement(AA, AOC, VL, MF, CURR_F)
+		!! reflect(graphic_quality['Low': graphic_quality.low; 'Medium': graphic_quality.med; 'High':
+		graphic_quality.hi; 'Ultra': graphic_quality.ul; 'Ultra high': graphic_quality.uh; 'Ultimate': graphic_quality.ut])
+		
+		affect(!! <= func)
+	}
+}

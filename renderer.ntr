@@ -1,0 +1,8 @@
+implement lib octaneRenderer
+implement lib directx as microsoft_graphics
+implement script "light.ntr"
+
+public RenderEngine renderer() : octaneRenderer
+{
+	octane.RenderScene(UnityEngine.SceneManagement(SceneManagement.ActiveScene().GetIndex()))
+}

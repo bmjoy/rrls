@@ -1,0 +1,31 @@
+implement lib system
+implement lib unity
+
+public lib FX()
+{
+	public class FX()
+	{
+		as _default_ >> Unity.PostProcessingStack(default)
+		
+		public int intensity CC.Strenght()
+		
+		public array[CC.*]<values CCVal
+		
+		CVA = Math.Set(CCVal([UnityEngine.CalculateLight, root]))
+		prism.MathCalc.Light()
+		prism.MathCalc.CVA()
+		
+		assign [FX]property as [FX]sub
+		{
+			require(prefix[FX], suffix[${%}])
+			{
+				if(<= func.Met())
+				{
+					assign <= sub as argumentInput()
+					args[0] = require(CC.PresetName),
+					args[1] = require(CC.PresetName.EffectName(effects))
+				}
+			}
+		}
+	}
+}
